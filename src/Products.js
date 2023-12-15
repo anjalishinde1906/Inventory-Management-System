@@ -25,7 +25,7 @@ class Products extends Component {
     
     //Displays the products from database, if there are any, on mounting
     componentDidMount(){           
-        fetch("http://localhost:3001/product/get/")
+        fetch("http://localhost:3003/product/get/")
         .then(res => res.json())
         .then(
             (result) => {         
@@ -56,9 +56,9 @@ class Products extends Component {
         let endpoint="";
         
         if(operation === 'insert')
-            endpoint = 'http://localhost:3001/product/create/'
+            endpoint = 'http://localhost:3003/product/create/'
         else
-            endpoint = 'http://localhost:3001/product/update/' + product.id
+            endpoint = 'http://localhost:3003/product/update/' + product.id
         
         var xhr = new XMLHttpRequest()
         xhr.open('POST',endpoint)
@@ -99,7 +99,7 @@ class Products extends Component {
     }    
 
     handleDestroy(productId) {        
-        fetch(`http://localhost:3001/product/delete/${productId}`)
+        fetch(`http://localhost:3003/product/delete/${productId}`)
         .then(res => res.json())
         .then(
             (result) => {                

@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-var dbURL = "mongodb+srv://anjali:<mzebiDAQLqW7FlsN>@atlascluster.hpsbk5v.mongodb.net/?retryWrites=true&w=majority";
+var dbURL = "mongodb+srv://anjali:admin@atlascluster.hpsbk5v.mongodb.net/?retryWrites=true&w=majority";
 var express = require('express')
 var bodyParser = require('body-parser')
 var app = express()
@@ -12,11 +12,13 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 //connection to MongoDB
 mongoose.set("strictQuery", false);
-
-
 mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log('MongoDB connected');
+        // Continue with your server setup or other actions after successful connection
+        var server = app.listen(3002, () => {
+            console.log('Server is listening on port : ', server.address().port);
+        });
     })
     .catch((error) => {
         console.error('Error connecting to MongoDB:', error);
@@ -71,7 +73,7 @@ app.get('/product/delete/:id', (req, res) => {
     })  
 })
 
-//Server is running on port 3001 and client is running on port 3000
-var server = app.listen(3001, () => {
+//Server is running on port 3003 and client is running on port 3000
+var server = app.listen(3003, () => {
     console.log('Server is listening on port : ', server.address().port)
 })
